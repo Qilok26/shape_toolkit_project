@@ -32,14 +32,30 @@ def create_shape():
 
 def main():
     welcome()
-    shape = create_shape()
 
-    if shape:
-        print(shape.describe())
-        area_cm2 = shape.area()
-        print(f"Area: {area_cm2:.2f} cm^2")
-        print(f"Area: {cm2_to_m2(area_cm2):.4f} m^2")
+    print("\n[First Shape]")
+    shape1 = create_shape()
+    if not shape1:
+        return
+    print(shape1.describe())
+    area1 = shape1.area()
+    print(f"Area: {area1:.2f} cm^2 ({cm2_to_m2(area1):.4f} m^2)")
 
+    
+    compare = input("\nWould you like to compare this with another shape? (yes/no): ").strip().lower()
+    if compare == "yes":
+        print("\n[Second Shape]")
+        shape2 = create_shape()
+        if not shape2:
+            return
+        print(shape2.describe())
+        area2 = shape2.area()
+        print(f"Area: {area2:.2f} cm^2 ({cm2_to_m2(area2):.4f} m^2)")
+
+        result = compare_areas(shape1, shape2)
+        print(f"\nComparison Result: {result}")
+
+    print("\nThank you for using the Shape Toolkit!")
 
 if __name__ == "__main__":
     main()
